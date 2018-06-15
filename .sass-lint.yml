@@ -1,0 +1,60 @@
+# https://github.com/sasstools/sass-lint/blob/master/docs/sass-lint.yml
+# https://github.com/sasstools/sass-lint/blob/master/lib/config/sass-lint.yml
+
+options:
+  formatter: stylish
+
+rules:
+  border-zero: 0
+
+  brace-style:
+    - 1
+    - allow-single-line: false
+
+  class-name-format:
+    - 1
+    - convention: "[a-z0-9\\-\\_]+"
+
+  force-attribute-nesting: 0
+
+  force-element-nesting: 0
+
+  force-pseudo-nesting: 0
+
+  hex-notation: 0
+
+  id-name-format:
+    - 1
+    - convention: "[a-z0-9\\-\\_]+"
+
+  indentation:
+    - 1
+    - size: 2
+
+  nesting-depth:
+    - 1
+    - max-depth: 5
+
+  no-css-comments: 0
+
+  no-ids: 1
+
+  no-important: 1
+
+  no-transition-all: 0
+
+  no-warn: 0
+
+  no-qualifying-elements:
+    - 1
+    -
+      allow-element-with-attribute: true
+      allow-element-with-class: true
+      allow-element-with-id: false
+
+  placeholder-name-format:
+    - 1
+    - convention: "[a-z0-9\\-\\_]+"
+
+  property-sort-order: 0
+

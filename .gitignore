@@ -1,0 +1,13 @@
+# OS realted files
+*.DS_Store
+Thumbs.db
+
+# IDE generated files
+.idea/
+
+# third party scripst
+/node_modules
+/lib
+
+# generated files
+*.map

@@ -1,0 +1,214 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>jquery.scroll-spy.js</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="../../lib/modernizr.custom.js"></script>
+
+  <style>
+    body {
+      box-sizing: border-box;
+      max-width: 300px;
+      margin: 0 auto;
+      padding: 2em 10px;
+    }
+
+    ul,
+    li {
+      padding: 0;
+      margin: 0;
+    }
+
+    h1 {
+      margin-top: 3.5em;
+    }
+    h2 {
+      margin-top: 3em;
+    }
+    h3 {
+      margin-top: 2em;
+    }
+
+    #scrollspy {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #000;
+    }
+    #scrollspy li {
+      position: relative;
+      display: block;
+      width: 44px;
+      height: 44px;
+    }
+    #scrollspy li::before {
+      content: '';
+      display: block;
+      border-radius: 50%;
+      width: 5px;
+      height: 5px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border: 2px solid #fff;
+      z-index: 10;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: all .3s ease-in-out;
+    }
+    #scrollspy a {
+      background-color: #fff;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(44px);
+      transition: all .3s ease-in-out;
+      pointer-events: none;
+      height: 44px;
+      padding: 0 10px 0 44px;
+      text-decoration: none;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .11);
+    }
+    #scrollspy li:hover::before {
+      border-color: #000;
+    }
+    #scrollspy li:hover a {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: all;
+    }
+    #scrollspy li.current::before {
+      border-color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+<section>
+  <h1>1. Mollis Consectetur</h1>
+
+  <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+</section>
+
+<section>
+  <h2>2 Cras Venenatis Cursus</h2>
+  <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl
+    consectetur et. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.
+    Donec sed odio dui. Curabitur blandit tempus porttitor.</p>
+  <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras justo odio, dapibus ac facilisis in,
+    egestas eget quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod
+    semper.</p>
+  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+</section>
+
+<section data-nav-item="false">
+  <h2>No section</h2>
+  <p>Sed posuere consectetur est at lobortis.</p>
+  <p>Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Curabitur blandit tempus porttitor. Aenean eu
+    leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut
+    id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Etiam porta sem malesuada magna mollis
+    euismod.</p>
+  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+</section>
+
+<section>
+  <h2>3. Inceptos Ridiculus Sit Parturient</h2>
+  <p>Vestibulum id ligula porta felis euismod semper. Donec ullamcorper nulla non metus auctor fringilla.</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  <p>Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Cras mattis
+    consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. Vestibulum id ligula porta felis
+    euismod semper.</p>
+</section>
+
+<a name="section-4"></a>
+<section>
+  <h2>4. hash by anchor tag</h2>
+  <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at
+    lobortis. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod.
+    Donec id elit non mi porta gravida at eget metus.</p>
+  <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas faucibus mollis
+    interdum.</p>
+</section>
+
+<div class="section" data-nav-item>
+  <h2>5. Praesent commodo</h2>
+
+  <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl
+    consectetur et. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent
+    commodo cursus magna, vel scelerisque nisl consectetur et. Vestibulum id ligula porta felis euismod semper. Nullam
+    quis risus eget urna mollis ornare vel eu leo.</p>
+</div>
+
+<section>
+  <h2>6. Ligula Etiam</h2>
+  <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+  <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac
+    facilisis in, egestas eget quam. Maecenas faucibus mollis interdum. Sed posuere consectetur est at lobortis. Cum
+    sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+  <p>Donec id elit non mi porta gravida at eget metus.</p>
+</section>
+
+<hr>
+
+<section class="filler">
+  <p>Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh
+    ultricies vehicula ut id elit. Curabitur blandit tempus porttitor.</p>
+  <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Donec ullamcorper nulla non metus auctor fringilla.
+    Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit
+    aliquet. Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas sed diam eget risus varius blandit sit amet
+    non magna.</p>
+  <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl
+    consectetur et. Nulla vitae elit libero, a pharetra augue. Cras mattis consectetur purus sit amet fermentum. Integer
+    posuere erat a ante venenatis dapibus posuere velit aliquet. Nullam quis risus eget urna mollis ornare vel eu
+    leo.</p>
+  <p>Donec ullamcorper nulla non metus auctor fringilla. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
+    venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec
+    elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Etiam porta sem malesuada magna mollis
+    euismod. Sed posuere consectetur est at lobortis.</p>
+  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nullam quis risus eget urna mollis ornare vel eu leo.
+    Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nullam id dolor id nibh ultricies vehicula ut
+    id elit. Sed posuere consectetur est at lobortis. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo
+    risus, porta ac consectetur ac, vestibulum at eros.</p>
+  <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cras justo odio, dapibus ac
+    facilisis in, egestas eget quam. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis,
+    est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean eu leo quam. Pellentesque
+    ornare sem lacinia quam venenatis vestibulum. Aenean lacinia bibendum nulla sed consectetur. Integer posuere erat a
+    ante venenatis dapibus posuere velit aliquet.</p>
+  <p>Etiam porta sem malesuada magna mollis euismod. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Etiam
+    porta sem malesuada magna mollis euismod. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla
+    vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Nullam quis risus eget urna
+    mollis ornare vel eu leo.</p>
+</section>
+
+<script src="../../node_modules/scrollmonitor/scrollMonitor.js"></script>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="jquery.scroll-spy.js"></script>
+
+<!-- custom js -->
+<script language="JavaScript">
+  (function ($) {
+    $(function () {
+      $('body')
+          .scrollSpy({
+            debug: true,
+            hideOnMobile: false,
+            calcDelta: ($el) => {
+              const margin = parseInt($el.find('h2, h3').css('margin-top'), 10);
+              console.log('calcDelta (headline margin):', margin);
+              // include the margin of the headlines
+              return margin;
+            }
+          });
+    });
+  }(jQuery));
+</script>
+</body>
+</html>
